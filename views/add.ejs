@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Page</title>
+</head>
+<body>
+    <h1>This is Lists</h1>
+
+    <article>
+        <form method="POST" action="/topic/add">
+            <table>
+                <tr>
+                    <td><label>Title</label></td>
+                    <td><input type="text" name="title" placeholder="Title" /></td>
+                </tr>
+                <tr>
+                    <td><label>Desc.</label></td>
+                    <td><input type="text" name="description" placeholder="Description" /></td>
+                </tr>
+                <tr>
+                    <td><label>Author</label></td>
+                    <td><input type="text" name="author" placeholder="Author" /></td>
+                </tr>
+            </table>
+            <input type="submit" value="send_data" name="" />
+        </form>
+    </article>
+
+    <ol>
+        <% for (i=0; i<topics.length; i++) { %>
+            <li><%= topics[i].title %> : <%= topics[i].description %></li>
+            <% } %>
+    </ol>
+</body>
+</html>
