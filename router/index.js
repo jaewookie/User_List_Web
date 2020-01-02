@@ -34,7 +34,7 @@ router.post('/topic/add', (req, res)=>{
     db.query(sql, params, (err, result)=>{
         if(!err){
             console.log("Sucess")
-            res.redirect('/topic/add')
+            res.redirect('/topic')
         } else{
             console.log(err)
         }
@@ -94,7 +94,7 @@ router.post('/topic/:id/delete', (req, res)=>{
 
     db.query(sql, [id], (err, result)=>{
         if(!err){
-            res.redirect(`/topic/add`)
+            res.redirect(`/topic`)
         }else{
             console.log(err)
         }

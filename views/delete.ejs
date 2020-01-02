@@ -9,7 +9,7 @@
 <body>
     <h1><a href='/topic'>ServerSide Javascript</a></h1>
     <article>
-      <form action="/topic/<%= topic.id %>/edit" method="post">
+      <form action="/topic/<%= topic.id %>/delete" method="post">
         <p><input type="text" name="title" value='<%= topic.title %>' placeholder="title" ></p>
           <!-- value를 통하여 전달받은 topic객체의(수정해야할) 데이터를 표시할 수 있다. -->
         <p><textarea name="description" rows="6" cols="50" placeholder="description"><%= topic.description %></textarea></p>
