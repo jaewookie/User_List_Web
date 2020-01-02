@@ -7,32 +7,39 @@
     <title>Add Page</title>
 </head>
 <body>
-    <h1>This is Lists</h1>
+    <h1><a href="/topic/add">ServerSide JavaScript</a></h1>
 
     <article>
         <form method="POST" action="/topic/add">
             <table>
                 <tr>
                     <td><label>Title</label></td>
-                    <td><input type="text" name="title" placeholder="Title" /></td>
+                    <td><input type="text" name="title" value="<%= topics.title %>" placeholder="Title" /></td>
                 </tr>
                 <tr>
                     <td><label>Desc.</label></td>
-                    <td><input type="text" name="description" placeholder="Description" /></td>
+                    <td><textarea name='description' rows="6" cols="50" value="<%= topics.description %>" placeholder="description"></textarea>></td>
                 </tr>
                 <tr>
                     <td><label>Author</label></td>
-                    <td><input type="text" name="author" placeholder="Author" /></td>
+                    <td><input type="text" name="author" value="<%= topics.author %>" placeholder="Author" /></td>
                 </tr>
             </table>
-            <input type="submit" value="send_data" name="" />
+            <input type="submit" />
         </form>
+        <ul>
+            <li><a href="/topic/add">add</a></li>
+        </ul>
     </article>
 
     <ol>
         <% for (i=0; i<topics.length; i++) { %>
-            <li><%= topics[i].title %> : <%= topics[i].description %></li>
+            <li>
+                <a href="/topic/<%= topics[i].id %>"><%= topics[i].title %> </a>
+                <!-- :  <%= topics[i].description %> -->
+            </li>
             <% } %>
     </ol>
+    
 </body>
 </html>

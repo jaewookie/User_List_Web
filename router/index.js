@@ -42,15 +42,22 @@ router.post('/topic/add', (req, res)=>{
 
 })
 
-router.get('/topic/:id', (req, res)=>{
-    // console.log(req.params.id)
-    var id = req.params.id
-    var sql = 'SELECT * FROM topic WHERE id=?'
-    db.query(sql, [id], (err, result)=>{
-        if(!err){
-            res.render('test.ejs', {topic:result})
-        } else{
-            console.log(err)
+router.get(['/topic', '/topic/:id'], (req, res)=>{
+    var sql = "SELECT*FROM topic";
+    db.query(sql, (err, results)=>{
+        var id = req.params.id
+        if(id){
+            var sql = 'SELECT * FROM topic WHERE id=?'
+            db.query(sql, [id], (err, result)=>{
+                if(!err){
+                    res.render('test', {topics: results ,topic:result[0]})
+                }else{
+                    console.log(err);
+                    res.status(500).send("Internal Server Error")
+                }
+            })
+        }else{
+            res.render('view', {topics:results, topic:undefined})
         }
     })
 })
