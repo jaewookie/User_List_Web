@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View Contents Page</title>
+</head>
+<body>
+    <h1><a href="/topic/">ServerSide JavaScript</a></h1>
+
+    <article>
+        <% if(topic) { %>
+            <h2><%= topic.title %></h2>
+            <p><%= topic.description %></p>
+            <p>by <%= topic.author %></p>
+        <% }else { %>
+            <h2>Welcome Page</h2>
+                This is Sever side Tutorial
+        <% } %>
+    </article>
+    <ol>
+        <% for (i=0; i<topics.length; i++) { %>
+            <li>
+                <a href="/topic/<%= topics[i].id %>"><%= topics[i].title %> </a>
+                <!-- :  <%= topics[i].description %> -->
+            </li>
+            <% } %>
+    </ol>
+    <ul>
+        <li><a href="/topic/add" >add</a></li>
+        <% if(topic) { %>
+            <li><a href="/topic/<%= topic.id %>/edit">edit</a></li>
+            <li><a href="/topic/<%= topic.id %>/delete">delete</a></li>
+        <% }else { %>
+            <h2>Welcome Page</h2>
+                This is Sever side Tutorial
+        <% } %>
+    </ul>
+</body>
+</html>

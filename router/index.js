@@ -42,6 +42,11 @@ router.post('/topic/add', (req, res)=>{
 
 })
 
+router.get('/topic/:id/edit', (req, res)=>{
+    res.render('edit')
+})
+
+
 router.get(['/topic', '/topic/:id'], (req, res)=>{
     var sql = "SELECT*FROM topic";
     db.query(sql, (err, results)=>{
@@ -50,7 +55,7 @@ router.get(['/topic', '/topic/:id'], (req, res)=>{
             var sql = 'SELECT * FROM topic WHERE id=?'
             db.query(sql, [id], (err, result)=>{
                 if(!err){
-                    res.render('test', {topics: results ,topic:result[0]})
+                    res.render('view', {topics: results ,topic:result[0]})
                 }else{
                     console.log(err);
                     res.status(500).send("Internal Server Error")
