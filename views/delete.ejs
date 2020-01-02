@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Data Page</title>
+    <title>Delete Data Page</title>
 </head>
 <body>
     <h1><a href='/topic'>ServerSide Javascript</a></h1>
@@ -15,7 +15,7 @@
         <p><textarea name="description" rows="6" cols="50" placeholder="description"><%= topic.description %></textarea></p>
         <!--  textarea는 태그들 사이에 데이터를 입력해야 표시가능.(	rows는 행이고, cols는 열이다 이걸 통하여 textarea의 크기를 조정한다. ) -->
         <p><input type="text" name="author" value='<%= topic.author %>' placeholder="author"></p>
-        <p><input type="submit" value="edit"></p>
+        <p><input type="submit" value="Delete"></p>
       </form>
     </article>
     <ol>

@@ -43,9 +43,64 @@ router.post('/topic/add', (req, res)=>{
 })
 
 router.get('/topic/:id/edit', (req, res)=>{
-    res.render('edit')
+    var sql = 'SELECT*FROM topic'
+    db.query(sql, (err, results)=>{
+        var id = req.params.id
+        if(id){
+            var sql = 'SELECT * FROM topic WHERE id=?'
+            db.query(sql, [id], (err, result)=>{
+                res.render('edit', {topics: results ,topic: result[0]})
+            })
+        }else{
+            res.send('There is no id')
+        }
+    })
 })
 
+router.post('/topic/:id/edit', (req, res)=>{
+    var sql = "UPDATE topic SET title=?, description=?, author=? WHERE id=?"
+    var id = req.params.id
+    var title = req.body.title
+    var desc = req.body.description
+    var author = req.body.author
+    db.query(sql, [title, desc, author, id], (err, result)=>{
+        if(!err){
+            res.redirect(`/topic/${id}/edit`)
+        }else{
+            console.log(err)
+        }
+    })
+
+})
+
+router.get('/topic/:id/delete', (req, res)=>{
+    var sql = 'SELECT*FROM topic'
+    db.query(sql, (err, results)=>{
+        var id = req.params.id
+        if(id){
+            var sql = 'SELECT * FROM topic WHERE id=?'
+            db.query(sql, [id], (err, result)=>{
+                res.render('delete', {topics: results ,topic: result[0]})
+            })
+        }else{
+            res.send('There is no id')
+        }
+    })
+})
+
+router.post('/topic/:id/delete', (req, res)=>{
+    var sql = "DELETE FROM topic WHERE id=?"
+    var id = req.params.id
+
+    db.query(sql, [id], (err, result)=>{
+        if(!err){
+            res.redirect(`/topic/add`)
+        }else{
+            console.log(err)
+        }
+    })
+
+})
 
 router.get(['/topic', '/topic/:id'], (req, res)=>{
     var sql = "SELECT*FROM topic";
